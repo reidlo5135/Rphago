@@ -1,8 +1,24 @@
+import os, json
 from pathlib import Path
+from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-co5(#pgz5frffdd@o8k6hfl%kv)5_ic%mpd5b)d)e#iin1f^3t'
+SECRET_FILES = os.path.join('../../rphago/SecretKey.json')
+
+with open(SECRET_FILES, 'r') as f:
+    secrets = json.loads(f.read())
+
+
+def get_secret(settings, secrets=secrets):
+    try:
+        return secrets[settings]
+    except KeyError:
+        error_msg = "Set the {} environment variable".format(settings)
+        raise ImproperlyConfigured(error_msg)
+
+
+SECRET_KEY = get_secret("SECRET_KEY")
 
 DEBUG = True
 
