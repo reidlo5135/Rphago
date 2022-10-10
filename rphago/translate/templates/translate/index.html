@@ -2,9 +2,127 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>INDEX</title>
+    <title>Rphago</title>
+    <link rel="stylesheet" type="text/css" href="../../static/translate/main.css" />
+    <link id="naver-splugin-css" rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/spi/css/20210531/spi_standard_https.css">
 </head>
 <body>
-    <h1>{{ lang }}</h1>
+    <section class="container">
+        <div class="rwd_layout">
+            <div class="rwd_box">
+                <div class="translate_area">
+                    <div class="lang_select">
+                        <div tabindex="-1">
+                            <div id="ddSourceLanguage" class="dropdown_wrap">
+                                <div class="dropdown">
+                                    <button class="dropbtn">
+                                        <span class="dropbtn_icon"></span>
+                                        <span class="dropbtn_click" style="font-family: Material Icons;font-size:15px;font-weight:400;color:#3b3b3b;float:left;"
+                                              onclick="dropdown()">언어 선택 arrow_drop_down</span>
+                                    </button>
+                                    <div class="dropdown-content">
+                                        <div onclick="showMenu(this.innerText)">한국어</div>
+                                        <div onclick="showMenu(this.innerText)">영어</div>
+                                        <div onclick="showMenu(this.innerText)">중국어(간체)</div>
+                                        <div onclick="showMenu(this.innerText)">중국어(번체)</div>
+                                        <div onclick="showMenu(this.innerText)">스페인어</div>
+                                        <div onclick="showMenu(this.innerText)">프랑스어</div>
+                                        <div onclick="showMenu(this.innerText)">독일어</div>
+                                        <div onclick="showMenu(this.innerText)">러시아어</div>
+                                        <div onclick="showMenu(this.innerText)">포르투갈어</div>
+                                        <div onclick="showMenu(this.innerText)">이탈리아어</div>
+                                        <div onclick="showMenu(this.innerText)">베트남어</div>
+                                        <div onclick="showMenu(this.innerText)">태국어</div>
+                                        <div onclick="showMenu(this.innerText)">인도네시아어</div>
+                                        <div onclick="showMenu(this.innerText)">힌디어</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sourceEditArea" class="edit_area" style="display: block;">
+                        <label for="txtSource">
+                            <textarea placeholder="번역할 내용을 입력하세요." id="txtSource" name="txtSource" class="edit_box" rows="1" style="resize: none;height: 39px">
+                            </textarea>
+                        </label>
+                    </div>
+                    <p class="text_count">
+                        <span>0</span>
+                        &nbsp;/&nbsp;
+                        <span>5000</span>
+                    </p>
+                    <div id="btn-toolbar-source" class="btn_toolbar">
+                        <div class="btn_translation">
+                            <button class="btn_text" type="button">
+                                <span class="translate_pc">
+                                    번역하기
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rwd_box">
+                <div class="translate_area">
+                    <div class="lang_select">
+
+                    </div>
+                    <div id="sourceEditArea" class="edit_area" style="display: block;">
+                        <label for="txtSource">
+                        <textarea placeholder="번역할 내용을 입력하세요." id="txtSource" name="txtSource" class="edit_box" rows="1" style="resize: none;height: 39px">
+
+                        </textarea>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
+<script type="text/javascript">
+    window.onload=()=>{
+        document.querySelector('.dropbtn_click').onclick = ()=>{
+            dropdown();
+        }
+        document.getElementsByClassName('fastfood').onclick = ()=>{
+            showMenu(value);
+        };
+        dropdown = () => {
+            var v = document.querySelector('.dropdown-content');
+            var dropbtn = document.querySelector('.dropbtn')
+            v.classList.toggle('show');
+            dropbtn.style.borderColor = 'rgb(94, 94, 94)';
+        }
+
+        showMenu=(value)=>{
+            var dropbtn_icon = document.querySelector('.dropbtn_icon');
+            var dropbtn_content = document.querySelector('.dropbtn_content');
+            var dropbtn_click = document.querySelector('.dropbtn_click');
+            var dropbtn = document.querySelector('.dropbtn');
+
+            dropbtn_icon.innerText = '';
+            dropbtn_content.innerText = value;
+            dropbtn_content.style.color = '#252525';
+            dropbtn.style.borderColor = '#3992a8';
+        }
+    }
+    window.onclick= (e)=>{
+        if(!e.target.matches('.dropbtn_click')){
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+
+            var dropbtn_icon = document.querySelector('.dropbtn_icon');
+            var dropbtn_content = document.querySelector('.dropbtn_content');
+            var dropbtn_click = document.querySelector('.dropbtn_click');
+            var dropbtn = document.querySelector('.dropbtn');
+
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
 </html>
