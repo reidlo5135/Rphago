@@ -1,4 +1,5 @@
-import os, json
+import os
+import json
 from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
 
