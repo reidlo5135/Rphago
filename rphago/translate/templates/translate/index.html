@@ -5,6 +5,7 @@
     <title>Rphago</title>
     <link rel="stylesheet" type="text/css" href="../../static/translate/main.css" />
     <link id="naver-splugin-css" rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/spi/css/20210531/spi_standard_https.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <section class="container">
@@ -17,24 +18,25 @@
                                 <div class="dropdown">
                                     <button class="dropbtn">
                                         <span class="dropbtn_icon"></span>
-                                        <span class="dropbtn_click" style="font-family: Material Icons;font-size:15px;font-weight:400;color:#3b3b3b;float:left;"
-                                              onclick="dropdown()">언어 선택 arrow_drop_down</span>
+                                        <span class="dropbtn_content">언어 선택</span>
+                                        <span class="dropbtn_click" style="font-family: Material Icons;font-size:15px;font-weight:400;color:#3b3b3b;float:right;"
+                                              onclick="dropdown()">arrow_drop_down</span>
                                     </button>
                                     <div class="dropdown-content">
-                                        <div onclick="showMenu(this.innerText)">한국어</div>
-                                        <div onclick="showMenu(this.innerText)">영어</div>
-                                        <div onclick="showMenu(this.innerText)">중국어(간체)</div>
-                                        <div onclick="showMenu(this.innerText)">중국어(번체)</div>
-                                        <div onclick="showMenu(this.innerText)">스페인어</div>
-                                        <div onclick="showMenu(this.innerText)">프랑스어</div>
-                                        <div onclick="showMenu(this.innerText)">독일어</div>
-                                        <div onclick="showMenu(this.innerText)">러시아어</div>
-                                        <div onclick="showMenu(this.innerText)">포르투갈어</div>
-                                        <div onclick="showMenu(this.innerText)">이탈리아어</div>
-                                        <div onclick="showMenu(this.innerText)">베트남어</div>
-                                        <div onclick="showMenu(this.innerText)">태국어</div>
-                                        <div onclick="showMenu(this.innerText)">인도네시아어</div>
-                                        <div onclick="showMenu(this.innerText)">힌디어</div>
+                                        <div class="lang" onclick="showMenu(this.innerText)">한국어</div>
+                                        <div class="lang" onclick="showMenu(this.innerText)">영어</div>
+                                        <div class="lang" onclick="showMenu(this.innerText)">중국어(간체)</div>
+                                        <div class="lang" onclick="showMenu(this.innerText)">중국어(번체)</div>
+                                        <div class="lang" onclick="showMenu(this.innerText)">스페인어</div>
+                                        <div class="lang" onclick="showMenu(this.innerText)">프랑스어</div>
+                                        <div class="lang" onclick="showMenu(this.innerText)">독일어</div>
+                                        <div class="lang" onclick="showMenu(this.innerText)">러시아어</div>
+                                        <div class="lang" onclick="showMenu(this.innerText)">포르투갈어</div>
+                                        <div class="lang" onclick="showMenu(this.innerText)">이탈리아어</div>
+                                        <div class="lang" onclick="showMenu(this.innerText)">베트남어</div>
+                                        <div class="lang" onclick="showMenu(this.innerText)">태국어</div>
+                                        <div class="lang" onclick="showMenu(this.innerText)">인도네시아어</div>
+                                        <div class="lang" onclick="showMenu(this.innerText)">힌디어</div>
                                     </div>
                                 </div>
                             </div>
@@ -52,8 +54,9 @@
                         <span>5000</span>
                     </p>
                     <div id="btn-toolbar-source" class="btn_toolbar">
+                        <input type="hidden" class="lang_hidden" />
                         <div class="btn_translation">
-                            <button class="btn_text" type="button">
+                            <button class="btn_text" type="button" onclick="translate()">
                                 <span class="translate_pc">
                                     번역하기
                                 </span>
@@ -84,12 +87,12 @@
         document.querySelector('.dropbtn_click').onclick = ()=>{
             dropdown();
         }
-        document.getElementsByClassName('fastfood').onclick = ()=>{
+        document.getElementsByClassName('lang').onclick = ()=>{
             showMenu(value);
         };
         dropdown = () => {
             var v = document.querySelector('.dropdown-content');
-            var dropbtn = document.querySelector('.dropbtn')
+            var dropbtn = document.querySelector('.dropbtn');
             v.classList.toggle('show');
             dropbtn.style.borderColor = 'rgb(94, 94, 94)';
         }
@@ -104,6 +107,25 @@
             dropbtn_content.innerText = value;
             dropbtn_content.style.color = '#252525';
             dropbtn.style.borderColor = '#3992a8';
+            $('.lang_hidden').val(value);
+        }
+
+        document.querySelector('.btn_text').onclick = () => {
+            let data = {
+                'text': $('#txtSource').val(),
+                'lang': $('.lang_hidden').val()
+            }
+            $.ajax({
+                type: 'POST',
+                url: 'http://127.0.0.1:8000/home/translate/',
+                data: JSON.stringify(data),
+                success:function(json){
+                    console.log("data pass success",json);
+                },
+                error : function(xhr,errmsg,err) {
+                    console.log(xhr.status + ": " + xhr.responseText);
+                }
+            });
         }
     }
     window.onclick= (e)=>{
