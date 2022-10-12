@@ -150,7 +150,7 @@ button {
     backface-visibility: hidden;
     background-color: transparent;
     border: 0;
-    color: #999;
+    color: #326da8;
     font-size: 40px;
     line-height: 1.26em;
     min-height: 39px;
@@ -162,7 +162,7 @@ button {
 }
 
 .edit_box::selection {
-    background-color: deepskyblue;
+    background-color: #326da8;
 }
 
 label {
