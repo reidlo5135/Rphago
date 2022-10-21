@@ -25,6 +25,7 @@
                                     <div class="dropdown-content">
                                         <div class="lang" onclick="showMenu(this.innerText)">한국어</div>
                                         <div class="lang" onclick="showMenu(this.innerText)">영어</div>
+                                        <div class="lang" onclick="showMenu(this.innerText)">일본어</div>
                                         <div class="lang" onclick="showMenu(this.innerText)">중국어(간체)</div>
                                         <div class="lang" onclick="showMenu(this.innerText)">중국어(번체)</div>
                                         <div class="lang" onclick="showMenu(this.innerText)">스페인어</div>
@@ -68,11 +69,22 @@
             <div class="rwd_box">
                 <div class="translate_area">
                     <div class="lang_select">
-
+                        <div tabindex="-1">
+                            <div id="ddSourceLanguage" class="dropdown_wrap">
+                                <div class="dropdown">
+                                    <button class="dropbtn">
+                                        <span class="dropbtn_icon"></span>
+                                        <span class="dropbtn_content">번역 결과</span>
+                                    </button>
+                                    <div class="dropdown-content">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div id="sourceEditArea" class="edit_area" style="display: block;">
                         <label for="txtSource">
-                        <textarea placeholder="번역할 내용을 입력하세요." id="txtSource" name="txtSource" class="edit_box" rows="1" style="resize: none;height: 39px">
+                        <textarea id="resultSource" name="txtSource" class="edit_box" rows="1" style="resize: none;height: 39px">
 
                         </textarea>
                         </label>
@@ -119,8 +131,9 @@
                 type: 'POST',
                 url: 'http://127.0.0.1:8000/home/translate/',
                 data: JSON.stringify(data),
-                success:function(json){
-                    console.log("data pass success",json);
+                success: function(response){
+                    console.log("Translate is on success : ", response);
+                    $('#resultSource').val(response.translatedText);
                 },
                 error : function(xhr,errmsg,err) {
                     console.log(xhr.status + ": " + xhr.responseText);
