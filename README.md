@@ -3,7 +3,7 @@
 <b>VERSION: 1.0.0</b><br>
 
 ## **Rphago?**
-<b>Rphago</b>란 Naver Papago에서 제공하는 Papago 번역 API를 이용하여 사용자의 언어 입력과 선택을 토대로 번역을 해주는 사이트입니다. <br><br>
+<b>Rphago</b>란 Naver Papago에서 제공하는 Papago 번역 API를 이용하여 사용자의 언어 입력과 선택을 토대로 번역 결과를 제공해주는 사이트입니다. <br><br>
 
 ## <b>사용기술</b>
 <span><img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
