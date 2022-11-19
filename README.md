@@ -17,7 +17,7 @@
 <img src="https://img.shields.io/badge/Intellij IDEA-000000?style=for-the-badge&logo=IntelliJ Idea&logoColor=white"></span>
 
 - Frontend - Html, Css, JavaScript
-- Backend - Django Framework, Python3
+- Backend - Django Framework, Python 3.10.7
 - Version Control - Git, GitHub
 - IDE - IntelliJ IDEA Ultimate
 
